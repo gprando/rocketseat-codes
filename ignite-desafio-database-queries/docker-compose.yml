@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  queries_challenge:
+    image: postgres
+    container_name: queries_challenge
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=queries_challenge
+    volumes:
+      - pgdata:/data/postgres
+    networks:
+      - backend
+
+ 
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  backend:
+    driver: "bridge"
